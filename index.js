@@ -14,10 +14,12 @@ app.post('/recibirDatos', async (req, res) => {
     const respuesta = await axios.post(firebaseURL, datosSensor);
 
     console.log('✅ Datos enviados a Firebase:', respuesta.status);
-    res.status(200).send('Datos recibidos y reenviados con éxito');
+    
+    // ✅ RESPUESTA SIMPLE PARA EVITAR CICLOS EN EL SENSOR
+    res.status(200).send('OK');
   } catch (error) {
     console.error('❌ Error al reenviar a Firebase:', error.message);
-    res.status(500).send('Error al reenviar a Firebase');
+    res.status(500).send('ERROR');
   }
 });
 
